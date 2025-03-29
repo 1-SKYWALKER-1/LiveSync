@@ -1,4 +1,14 @@
 @font-face {
     font-family: 'Orbitron';
-    src: url(/);
+    src: url('/Assets/fonts/Orbitron-VariableFont_wght.ttf');
 }
+/* @font-face {
+    font-family: 'Orbitron';
+    font-weight: 600;
+    src: url('/Assets/fonts/Orbitron-SemiBold.ttf');
+}
+@font-face {
+    font-family: 'Orbitron';
+    font-weight: 800;
+    src: url('/Assets/fonts/Orbitron-Bold.ttf');
+} */

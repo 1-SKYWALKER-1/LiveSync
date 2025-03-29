@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@import url("/Assets/css/reset.css");
+@import url("/Assets/css/fonts.css");
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -7,7 +9,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100vh;
+  min-height: 100vh;
 }
 body::before {
   content: "";
@@ -269,7 +271,7 @@ body::before {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 100vh;
+  min-height: 90vh;
   position: relative;
   z-index: 2;
 }
