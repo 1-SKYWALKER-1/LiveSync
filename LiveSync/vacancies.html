@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вакансии</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Кнопка гамбургер-меню -->
+<button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+<!-- Регистрация/Авторизация -->
+<div class="auth-menu">
+  <a href="Log_Window.html" class="auth-button">
+    <span class="auth-icon">👤</span>
+  </a>
+</div>
+
+<!-- Сайдбар -->
+<div class="sidebar" id="sidebar">
+  <div class="logo">
+    <h2>LiveSync</h2>
+  </div>
+  <ul>
+    <li><button onclick="goToCatalog()"><span class="icon">🏠</span> Каталог</button></li>
+    <li><button onclick="goToCooperation()"><span class="icon">🤝</span> Сотрудничество</button></li>
+    <li><button onclick="goToVacancies()"><span class="icon">💼</span> Вакансии</button></li>
+    <li><button onclick="alert('Связаться с нами!')"><span class="icon">📞</span> Связаться с нами!</button></li>
+  </ul>
+</div>
+
+<!-- Контент -->
+<div class="content">
+  <h1 class="page-title">Вакансии</h1>
+  <div class="vacancies-container">
+    <!-- Вакансии (один прямоугольник на всю ширину экрана) -->
+    <div class="vacancy-card">
+      <img src="https://via.placeholder.com/600x300" alt="Вакансия 1">
+      <div class="vacancy-info">
+        <h3>Вакансия 1</h3>
+        <p>Описание вакансии, обязанности и требования...</p>
+        <button>Подробнее</button>
+      </div>
+    </div>
+
+    <div class="vacancy-card">
+      <img src="https://via.placeholder.com/600x300" alt="Вакансия 2">
+      <div class="vacancy-info">
+        <h3>Вакансия 2</h3>
+        <p>Описание вакансии, обязанности и требования...</p>
+        <button>Подробнее</button>
+      </div>
+    </div>
+
+    <!-- Добавьте еще вакансии по аналогии -->
+  </div>
+</div>
+
+<script src="SideBar.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
