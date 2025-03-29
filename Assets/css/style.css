@@ -1,0 +1,659 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  color: #ffffff;
+  -webkit-transition: color 0.3s ease, -webkit-transform 0.3s ease;
+  transition: color 0.3s ease, -webkit-transform 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.hamburger:hover {
+  color: #ff9500;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #333333 0%, #4a4a4a 100%);
+  overflow-x: hidden;
+  -webkit-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
+  padding-top: 60px;
+  z-index: 900;
+  -webkit-box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+.sidebar.open {
+  width: 250px;
+}
+.sidebar:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+.sidebar h2 {
+  color: #ff9500;
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar ul li {
+  padding: 8px 15px;
+  /* Кнопки */
+}
+.sidebar ul li button {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #555555;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  position: relative;
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  /* Эффект света вдоль кнопки */
+}
+.sidebar ul li button:active {
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.sidebar ul li button:hover {
+  background-color: #ff9500;
+  color: #ffffff;
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+.sidebar ul li button:hover::after {
+  left: 100%;
+}
+.sidebar ul li button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 149, 0, 0.4)), to(transparent));
+  background: linear-gradient(90deg, transparent, rgba(255, 149, 0, 0.4), transparent);
+  -webkit-transition: left 0.4s ease;
+  transition: left 0.4s ease;
+}
+.sidebar ul li button .icon {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.content {
+  margin-left: 20px;
+  padding: 20px;
+  -webkit-transition: margin-left 0.3s;
+  transition: margin-left 0.3s;
+  z-index: 2;
+  color: #ffffff;
+}
+.content.shifted {
+  margin-left: 270px;
+}
+
+/* Меню авторизации */
+.auth-menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.auth-button {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 8px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  -webkit-transition: background-color 0.3s ease, -webkit-transform 0.2s ease, -webkit-box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, -webkit-transform 0.2s ease, -webkit-box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, -webkit-transform 0.2s ease, -webkit-box-shadow 0.3s ease;
+}
+.auth-button:hover {
+  background-color: #ff9500;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.auth-icon {
+  width: 32px;
+  height: 32px;
+  color: #333333;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.auth-button:hover .auth-icon {
+  color: #ffffff;
+}
+
+/* Контейнер для логотипа */
+.logo {
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+  z-index: 3; /* Поднимаем логотип выше затемнения */
+  /* Декоративная линия под логотипом */
+  /* Стиль текста логотипа */
+}
+.logo::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background-color: #ff9500;
+  -webkit-transition: width 0.3s ease;
+  transition: width 0.3s ease;
+}
+.logo h2 {
+  margin: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: -webkit-gradient(linear, left top, right top, from(#ff9500), to(#ffcc00));
+  background: linear-gradient(90deg, #ff9500, #ffcc00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(255, 149, 0, 0.5);
+  -webkit-transition: text-shadow 0.3s ease, -webkit-transform 0.3s ease;
+  transition: text-shadow 0.3s ease, -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  transition: transform 0.3s ease, text-shadow 0.3s ease, -webkit-transform 0.3s ease;
+  /* Эффект при наведении */
+}
+.logo h2:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  text-shadow: 0 0 20px rgba(255, 149, 0, 0.8);
+}
+
+.logo:hover::after {
+  width: 80px;
+}
+
+/* Страница авторизации */
+.auth-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+.auth-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Затемнение */
+  z-index: 1;
+}
+
+.auth-container {
+  background: linear-gradient(135deg, #333333 0%, #4a4a4a 100%);
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  -webkit-animation: fadeIn 0.3s ease;
+          animation: fadeIn 0.3s ease; /* Добавляем анимацию появления */
+  position: relative;
+  z-index: 2; /* Поверх затемнения */
+}
+
+.auth-container h2 {
+  color: #ff9500;
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #555555;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.form-group input::-webkit-input-placeholder {
+  color: #cccccc;
+}
+
+.form-group input::-moz-placeholder {
+  color: #cccccc;
+}
+
+.form-group input:-ms-input-placeholder {
+  color: #cccccc;
+}
+
+.form-group input::-ms-input-placeholder {
+  color: #cccccc;
+}
+
+.form-group input::placeholder {
+  color: #cccccc;
+}
+
+.auth-submit, .auth-toggle {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-transition: background-color 0.3s ease, -webkit-transform 0.2s ease;
+  transition: background-color 0.3s ease, -webkit-transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+
+.auth-submit {
+  background-color: #ff9500;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.auth-submit:hover {
+  background-color: #ffcc00;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.auth-toggle {
+  background-color: #555555;
+  color: #ffffff;
+}
+
+.auth-toggle:hover {
+  background-color: #777777;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #ff9500;
+  text-decoration: none;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #ffcc00;
+}
+
+/* Анимация появления формы */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+/*Каталог*/
+/* Контейнер для каталога */
+.catalog-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 20px 1fr 20px 1fr 20px 1fr;
+  grid-template-columns: repeat(4, 1fr); /* 4 элемента в ряд */
+  gap: 20px; /* Отступ между карточками */
+  padding: 20px;
+  margin-top: 60px; /* Отступ от верхней панели */
+  z-index: 2;
+  color: #ffffff;
+  overflow-y: auto; /* Прокрутка вниз */
+  max-height: calc(100vh - 120px); /* Ограничение по высоте */
+}
+
+/* Карточки товаров */
+.product-card {
+  background-color: rgba(255, 255, 255, 0.7); /* Прозрачный фон */
+  padding: 20px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.product-card img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.product-card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.product-card button {
+  background-color: #ff9500;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+  background-color: #ffcc00;
+}
+
+/* Эффект при наведении на карточку */
+.product-card:hover {
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+}
+
+/* Стили для страницы каталога */
+.content {
+  margin-left: 20px;
+  padding: 20px;
+  -webkit-transition: margin-left 0.3s;
+  transition: margin-left 0.3s;
+  z-index: 2;
+  color: #ffffff;
+}
+
+.content.shifted {
+  margin-left: 270px;
+}
+
+.vacancies-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+
+.vacancy-card {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.vacancy-card img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.vacancy-info {
+  padding: 20px;
+}
+
+.vacancy-info h3 {
+  color: #ff9500;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.vacancy-info p {
+  color: #ffffff;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.vacancy-info button {
+  background-color: #ff9500;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.vacancy-info button:hover {
+  background-color: #ffcc00;
+}
+
+/*Плавное исчезновение */
+.fade-out {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+}
+
+.fade-out.hidden {
+  opacity: 0;
+}
+
+.event-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px;
+}
+
+.event-card {
+  width: 100%;
+  max-width: 250px; /* Уменьшаем максимальную ширину */
+  background-color: #333333;
+  color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.event-card:hover {
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+}
+
+.event-image {
+  background-color: #444444;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.event-card h3 {
+  font-size: 20px; /* Уменьшаем размер заголовка */
+  margin: 10px 0;
+}
+
+.event-card p {
+  font-size: 14px; /* Уменьшаем размер текста */
+  margin: 10px 0;
+}
+
+/* Стили для адаптивности */
+@media (max-width: 1024px) {
+  .event-card {
+    width: 48%; /* 2 карточки в строке */
+    max-width: 48%;
+  }
+}
+@media (max-width: 768px) {
+  .event-card {
+    width: 31%; /* 3 карточки в строке */
+    max-width: 31%;
+  }
+}
+@media (max-width: 480px) {
+  .event-card {
+    width: 100%; /* 1 карточка в строке */
+    max-width: 100%;
+  }
+}
